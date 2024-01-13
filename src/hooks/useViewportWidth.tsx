@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-type TScreenType = "tablet" | "dekstop" | "phone" | "largeTablet";
+type TScreenType = "tablet" | "dekstop" | "mobile" | "largeTablet";
 
 const checkScreenType = (vwidth: number): TScreenType | never => {
   if (500 < vwidth && vwidth <= 768) {
     return "tablet";
   } else if (vwidth <= 500) {
-    return "phone";
+    return "mobile";
   } else if (768 < vwidth && vwidth <= 1024) {
     return "largeTablet";
   } else if (1024 < vwidth) {

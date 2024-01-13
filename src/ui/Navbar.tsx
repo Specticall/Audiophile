@@ -9,8 +9,7 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
 
   // For mobile navbar.
-  const handleOpen = () => dispatch(openModal("NavbarMobile"));
-
+  const handleOpen = async () => dispatch(openModal("NavbarMobile"));
   return (
     <nav className="fixed left-0 right-0 top-0 grid place-items-center z-50 bg-black">
       <ul className="flex justify-between items-center w-full max-w-[70rem] px-8 border-b border-white/20 h-[6rem]">

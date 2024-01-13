@@ -1,4 +1,4 @@
-export default function Logo() {
+export default function Logo({ className }: { className?: string }) {
   return (
     <svg
       width="143"
@@ -6,6 +6,7 @@ export default function Logo() {
       viewBox="0 0 143 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         fillRule="evenodd"

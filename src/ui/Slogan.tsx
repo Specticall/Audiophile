@@ -1,4 +1,4 @@
-import sloganImage from "/public/shared/desktop/image-best-gear.jpg";
+import sloganImage from "/shared/desktop/image-best-gear.jpg";
 
 export function Slogan() {
   return (

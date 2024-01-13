@@ -9,7 +9,7 @@ export function getResponsiveImageFrom(
 ) {
   switch (type) {
     case "mobile":
-      return images["mobile"] || images["desktop"];
+      return images["mobile"] || images["tablet"] || images["desktop"];
     case "largeTablet":
       return images["largeTablet"] || images["tablet"] || images["desktop"];
     case "tablet":

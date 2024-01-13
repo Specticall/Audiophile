@@ -1,10 +1,8 @@
-import speakerImage from "/public/shared/desktop/image-category-thumbnail-speakers.png";
-import headphoneImage from "/public/shared/desktop/image-category-thumbnail-headphones.png";
-import earphoneImage from "/public/shared/desktop/image-category-thumbnail-earphones.png";
+import speakerImage from "/shared/desktop/image-category-thumbnail-speakers.png";
+import headphoneImage from "/shared/desktop/image-category-thumbnail-headphones.png";
+import earphoneImage from "/shared/desktop/image-category-thumbnail-earphones.png";
 import { Button } from "./Button";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { closeModal } from "../slice/modalSlice";
 
 const productListInfo = [
   {
@@ -41,12 +39,16 @@ function ProductLink({ product }: { product: Record<string, string> }) {
   const { title, route, image, style } = product;
 
   // Only used when the user is on mobile. Basically closes the modal after the user presses the link.
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
+  // const handleCloseOnNavigate = async () => {
+  //   await wait(1000);
+  //   dispatch(closeModal());
+  // };
   return (
     <Link
       to={route}
       className="flex flex-col items-center justify-center relative w-full group "
-      onClick={() => dispatch(closeModal())}
+      // onClick={handleCloseOnNavigate}
     >
       <img
         src={image}
