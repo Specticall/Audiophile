@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import Icon from "./Icon";
 
 const base = "uppercase px-7 py-3 text-subtitle tracking-button font-bold";
@@ -17,13 +17,21 @@ type ButtonProps = {
   children: ReactNode;
   type: keyof typeof buttonStyles;
   className?: string;
+  onClick?: MouseEventHandler;
 };
 
-export function Button({ children, type = "primary", className }: ButtonProps) {
+export function Button({
+  children,
+  type = "primary",
+  className,
+  onClick = () => {},
+}: ButtonProps) {
   return type !== "tertiary" ? (
-    <button className={`${buttonStyles[type]} ${className}`}>{children}</button>
+    <button className={`${buttonStyles[type]} ${className}`} onClick={onClick}>
+      {children}
+    </button>
   ) : (
-    <button className={`${buttonStyles[type]} ${className}`}>
+    <button className={`${buttonStyles[type]} ${className}`} onClick={onClick}>
       <p>{children}</p>
       <Icon type="chevron" color={"#D87D4A"} />
     </button>

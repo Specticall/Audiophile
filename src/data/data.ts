@@ -5,6 +5,18 @@ export type TImage = {
   desktop: string;
 };
 
+export type TGallery = {
+  first: TImage;
+  second: TImage;
+  third: TImage;
+};
+
+export type TOthers = {
+  slug: string;
+  name: string;
+  image: TImage;
+};
+
 export type TProduct = {
   id: number;
   slug: string;
@@ -24,16 +36,8 @@ export type TProduct = {
     quantity: number;
     item: string;
   }[];
-  gallery: {
-    first: TImage;
-    second: TImage;
-    third: TImage;
-  };
-  others: {
-    slug: string;
-    name: string;
-    image: TImage;
-  }[];
+  gallery: TGallery;
+  others: TOthers[];
 };
 
 export const products: TProduct[] = [

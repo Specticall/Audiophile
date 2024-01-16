@@ -1,10 +1,11 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { NavbarMobile } from "../ui/NavbarMobile";
+import { CartModal } from "../ui/CartModal";
 
 type TinitialState = {
   state: "open" | "closed";
-  elementName: "NavbarMobile" | "";
+  elementName: "NavbarMobile" | "Cart" | "";
 };
 
 const initialState: TinitialState = {
@@ -38,6 +39,8 @@ export function getComponentFromString(componentName: string) {
   switch (componentName) {
     case "NavbarMobile":
       return <NavbarMobile />;
+    case "Cart":
+      return <CartModal />;
     default:
       throw new Error(
         `Component with the name ${componentName} not found! Check the helper.tsx file`

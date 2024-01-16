@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 type TinitialState = {
   status: "loading" | "idle";
@@ -30,6 +31,11 @@ const appSlice = createSlice({
     },
   },
 });
+
+export const getItemQuantityInCart = createSelector(
+  [(state: RootState) => state.cart.cart, (_, id) => id],
+  (cart, id) => cart.find((item) => item.id === id)?.quantity
+);
 
 export const {
   updateState,

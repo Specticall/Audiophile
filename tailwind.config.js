@@ -25,7 +25,9 @@ export default {
     },
     letterSpacing: {
       subtitle: "0.125rem",
+      small: "0.08rem",
       button: "0.0625rem",
+      "very-small": "0.025rem",
       large: "0.625rem",
     },
     fontSize: {

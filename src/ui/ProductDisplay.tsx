@@ -2,6 +2,7 @@ import { TProduct } from "../data/data";
 import { getResponsiveImageFrom } from "../helper/helper";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { Button } from "./Button";
+import { LinkButton } from "./LinkButton";
 
 export function ProductDisplay({
   product,
@@ -11,7 +12,13 @@ export function ProductDisplay({
   reverse: boolean;
 }) {
   const { type } = useViewportWidth();
-  const { name, categoryImage: image, description, new: newProduct } = product;
+  const {
+    name,
+    categoryImage: image,
+    description,
+    new: newProduct,
+    slug,
+  } = product;
   return (
     <article className="grid grid-cols-2 place-items-center max-lg:grid-cols-1 gap-12">
       <img
@@ -34,9 +41,11 @@ export function ProductDisplay({
         <p className="mt-6 text-black/75 leading-body text-body max-w-[22rem] max-lg:max-w-full">
           {description}
         </p>
-        <Button type="primary" className="mt-12 w-fit">
-          See Product
-        </Button>
+        <LinkButton to={`/product/${slug}`}>
+          <Button type="primary" className="mt-12 w-fit">
+            See Product
+          </Button>
+        </LinkButton>
       </div>
     </article>
   );

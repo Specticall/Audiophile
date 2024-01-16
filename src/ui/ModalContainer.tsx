@@ -23,7 +23,7 @@ export default function ModalContainer({
   }, [handleClose]);
 
   useEffect(() => {
-    if (previousType === "tablet" && type !== "phone") handleClose();
+    if (previousType === "tablet" && type !== "mobile") handleClose();
   }, [previousType, type, handleClose]);
 
   return (

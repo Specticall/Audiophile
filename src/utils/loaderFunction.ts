@@ -3,7 +3,12 @@ import { TProduct } from "../data/data";
 import { fetchProducts } from "./fetchServices";
 
 export const genericProductLoader = (
-  productName: "headphone" | "earphone" | "speaker" | "none" = "headphone"
+  productName:
+    | "headphone"
+    | "earphone"
+    | "speaker"
+    | "none"
+    | "all" = "headphone"
 ) =>
   (async () => {
     const data = (await fetchProducts()) as TProduct[];
@@ -19,6 +24,7 @@ export const genericProductLoader = (
       if (a.new === b.new) return 0;
       return 1;
     });
-
+    if (productName === "none") return [];
+    if (productName === "all") return data;
     return filtered;
   }) satisfies LoaderFunction;

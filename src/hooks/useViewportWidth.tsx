@@ -7,9 +7,9 @@ const checkScreenType = (vwidth: number): TScreenType | never => {
     return "tablet";
   } else if (vwidth <= 500) {
     return "mobile";
-  } else if (768 < vwidth && vwidth <= 1024) {
+  } else if (768 < vwidth && vwidth <= 990) {
     return "largeTablet";
-  } else if (1024 < vwidth) {
+  } else if (990 < vwidth) {
     return "dekstop";
   } else {
     throw new Error(

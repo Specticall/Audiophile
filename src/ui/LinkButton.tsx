@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 interface LinkButtonProps {
@@ -6,5 +6,19 @@ interface LinkButtonProps {
   children: ReactNode;
 }
 export function LinkButton({ children, to }: LinkButtonProps) {
-  return <Link to={to}>{children}</Link>;
+  useEffect(() => {
+    // const scrollPageToTop = setTimeout(() => {
+    //   window.scrollTo(0, 0);
+    // }, 1000);
+    // return () => clearTimeout(scrollPageToTop);
+  }, []);
+
+  const handleScrollToTop = () => {
+    setTimeout(() => window.scrollTo(0, 0), 1000);
+  };
+  return (
+    <Link to={to} onClick={handleScrollToTop}>
+      {children}
+    </Link>
+  );
 }

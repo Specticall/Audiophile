@@ -13,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import { PageLoader } from "./PageLoader";
 import { useEffect } from "react";
 import { initialRenderIsCompleted } from "../slice/appSlice";
+import { extractRouteNameFrom } from "../helper/helper";
 
 export default function AppLayout() {
   const dispatch = useAppDispatch();
@@ -40,7 +41,9 @@ export default function AppLayout() {
       <main className="flex-1">
         <AnimatePresence mode="wait" key={"page-loader"}>
           {loaderAllowedToRender && (
-            <PageLoader forRoute={service.location.pathname.replace("/", "")} />
+            <PageLoader
+              forRoute={extractRouteNameFrom(service.location.pathname)}
+            />
           )}
         </AnimatePresence>
         <AnimatePresence mode="wait" key={"modal"}>

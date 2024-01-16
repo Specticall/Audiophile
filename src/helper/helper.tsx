@@ -18,3 +18,18 @@ export function getResponsiveImageFrom(
       return images["desktop"];
   }
 }
+1;
+export function extractRouteNameFrom(pathname: string) {
+  if (pathname.includes("/product/"))
+    return pathname.replace("/product/", "").replace("-", " ");
+  return pathname.replace("/", "");
+}
+
+export function formatCurrency(price: number) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    minimumIntegerDigits: 1,
+    useGrouping: true,
+  });
+
+  return formatter.format(price);
+}
