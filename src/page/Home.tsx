@@ -11,6 +11,7 @@ import HeroImageMobile from "/home/tablet/image-header.jpg";
 import { Slogan } from "../ui/Slogan";
 import { useViewportWidth } from "../hooks/useViewportWidth";
 import { getResponsiveImageFrom } from "../helper/helper";
+import { LinkButton } from "../ui/LinkButton";
 
 export default function Home() {
   return (
@@ -82,12 +83,14 @@ function BannerZX9Speaker() {
           Upgrade to premium speakers that are phenomenally built to deliver
           truly remarkable sound.
         </p>
-        <Button
-          type="secondary"
-          className="max-x-sm:self-center max-x-sm:place-self-center"
-        >
-          See Product
-        </Button>
+        <LinkButton to="/product/zx9-speaker">
+          <Button
+            type="secondary"
+            className="max-x-sm:self-center max-x-sm:place-self-center"
+          >
+            See Product
+          </Button>
+        </LinkButton>
       </div>
     </div>
   );
@@ -111,7 +114,9 @@ function BannerZX7Speaker() {
         <h2 className="text-black text-h4 mb-6 font-bold tracking-subtitle">
           ZX7 SPEAKER
         </h2>
-        <Button type="secondary">See Product</Button>
+        <LinkButton to="/product/zx7-speaker">
+          <Button type="secondary">See Product</Button>
+        </LinkButton>
       </div>
     </div>
   );
@@ -129,7 +134,9 @@ function BannerYX1Earphone() {
         <h2 className="text-black text-h4 mb-6 font-bold tracking-subtitle">
           YX1 EARPHONES
         </h2>
-        <Button type="secondary">See Product</Button>
+        <LinkButton to="/product/yx1-earphones">
+          <Button type="secondary">See Product</Button>
+        </LinkButton>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import {
   substractQuantity,
 } from "../slice/cartSlice";
 import { Button } from "./Button";
+import { LinkButton } from "./LinkButton";
 import UpdateQuantityButton from "./UpdateQuantityButton";
 
 // const fakeCart: TCartItem[] = [
@@ -119,9 +120,11 @@ function CartItemList({
           ${formatCurrency(totalPrice)}
         </p>
       </div>
-      <Button type="primary" className="w-full mt-6">
-        Checkout
-      </Button>
+      <LinkButton to="/checkout">
+        <Button type="primary" className="w-full mt-6">
+          Checkout
+        </Button>
+      </LinkButton>
     </>
   );
 }
@@ -129,7 +132,6 @@ function CartItemList({
 function CartItem({ item }: { item: TCartItem }) {
   const { type } = useViewportWidth();
   const { name, price, quantity, image, id } = item;
-  const totalPrice = price * quantity;
   const dispatch = useAppDispatch();
 
   const handleIncrement = () => dispatch(addQuantity(id));
@@ -145,7 +147,7 @@ function CartItem({ item }: { item: TCartItem }) {
         <div className="max-w-[6rem] flex flex-col gap-y-1">
           <h5 className="truncate font-bold">{name}</h5>
           <p className="text-black/75 font-bold tracking-very-small">
-            $ {formatCurrency(totalPrice)}
+            $ {formatCurrency(price)}
           </p>
         </div>
       </div>

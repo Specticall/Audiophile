@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TImage, TProduct } from "../data/data";
+import { RootState } from "../store";
 
 export type TCartItem = {
   id: number;
@@ -14,11 +15,13 @@ type TProductId = number;
 type TinitialState = {
   cart: TCartItem[];
   currentPageProduct: TProduct | null;
+  popupMessage: string;
 };
 
 const initialState: TinitialState = {
   cart: [],
   currentPageProduct: null,
+  popupMessage: "",
 };
 
 const cartSlice = createSlice({
@@ -39,9 +42,11 @@ const cartSlice = createSlice({
         price: state.currentPageProduct.price,
       };
       state.cart.push(newCartItem);
+      state.popupMessage = "Item Added";
     },
     removeItem(state, action: PayloadAction<TProductId>) {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
+      state.popupMessage = "Item Removed";
     },
     addQuantity(state, action: PayloadAction<TProductId>) {
       const target = state.cart.find((item) => item.id === action.payload);
@@ -51,6 +56,7 @@ const cartSlice = createSlice({
       }
 
       target.quantity++;
+      state.popupMessage = "+1 Item";
     },
     substractQuantity(state, action: PayloadAction<TProductId>) {
       const target = state.cart.find((item) => item.id === action.payload);
@@ -62,15 +68,25 @@ const cartSlice = createSlice({
       }
 
       target.quantity--;
+      state.popupMessage = "-1 Item";
     },
     clearItem(state) {
       state.cart = [];
+      state.popupMessage = "Cart Cleared";
     },
     updateLoadedProductData(state, action) {
       state.currentPageProduct = action.payload;
     },
   },
 });
+
+export const getTotalItemQuantityInCart = createSelector(
+  [(state: RootState) => state.cart.cart],
+  (cart) =>
+    cart.reduce((total, item) => {
+      return (total += item.quantity);
+    }, 0)
+);
 
 export const {
   addItem,

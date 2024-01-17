@@ -19,6 +19,7 @@ import InitialPageLoader from "./page/InitialPageLoader";
 import { useDispatch } from "react-redux";
 import { initialLoaderIsCompleted } from "./slice/appSlice";
 import Product from "./page/Product";
+import Checkout from "./page/Checkout";
 
 const HomeRoute: RouteObject = {
   element: <Home />,
@@ -50,6 +51,12 @@ const ProductRoute: RouteObject = {
   loader: genericProductLoader("all"),
 };
 
+const CheckoutRoute: RouteObject = {
+  element: <Checkout />,
+  path: "/checkout",
+  loader: genericProductLoader("all"),
+};
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -62,6 +69,7 @@ const router = createBrowserRouter([
       EarphonesRoute,
       HeadphonesRoute,
       ProductRoute,
+      CheckoutRoute,
     ],
   },
 ]);

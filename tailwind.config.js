@@ -40,6 +40,8 @@ export default {
       body: "0.9375rem",
       overline: "0.875rem",
       subtitle: "0.8125rem",
+      label: "0.75rem",
+      "x-sm": "0.625rem",
     },
   },
   plugins: [],

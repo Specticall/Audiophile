@@ -18,6 +18,10 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal(state, action) {
+      if (state.state === "open") {
+        modalSlice.caseReducers.closeModal(state);
+        return;
+      }
       state.elementName = action.payload;
       state.state = "open";
     },

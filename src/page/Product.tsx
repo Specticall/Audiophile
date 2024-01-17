@@ -153,9 +153,12 @@ function ProductDetails({
         <h3 className="text-h3 font-bold tracking-small mb-8">IN THE BOX</h3>
         <div className="max-x-lg:place-items-center">
           <div className="flex flex-col gap-2 ">
-            {includes.map((item) => {
+            {includes.map((item, i) => {
               return (
-                <div className="flex gap-6">
+                <div
+                  className="flex gap-6"
+                  key={`${i}-${item.item}-productMain`}
+                >
                   <p className="text-accent-dark font-bold text-body">
                     {item.quantity}x
                   </p>
@@ -197,9 +200,12 @@ function ProductRecommendation({ others }: { others: TOthers[] }) {
     <div className="text-center w-full col-span-2 mb-[3rem]">
       <h3 className="uppercase text-h3 font-bold mb-16">You may also like</h3>
       <div className="grid grid-cols-3 gap-7 max-sm:grid-cols-2 max-x-sm:grid-cols-1">
-        {others.map((item) => {
+        {others.map((item, i) => {
           return (
-            <div className="max-x-sm:mb-4">
+            <div
+              className="max-x-sm:mb-4"
+              key={`${i}-${item.slug}-recommendation`}
+            >
               <img
                 src={getResponsiveImageFrom(type, item.image)}
                 alt="recommendation image"
