@@ -20,9 +20,18 @@ type TinitialState = {
 
 const initialState: TinitialState = {
   cart: [],
+
   currentPageProduct: null,
   popupMessage: "",
 };
+/*
+  const totalPrice = cartItems.reduce((total, item) => {
+    return (total += item.price);
+  }, 0);
+  const shippingPrice = totalPrice * SHIPPING_RATE;
+  const VATPrice = totalPrice * VAT_RATE;
+  const grandTotalPrice = totalPrice + shippingPrice + VATPrice;
+*/
 
 const cartSlice = createSlice({
   name: "cart",

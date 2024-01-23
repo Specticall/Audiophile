@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ITEM_DISPLAYED_ON_CART_MODAL } from "../helper/config";
 import { formatCurrency, getResponsiveImageFrom } from "../helper/helper";
 import { useAppDispatch } from "../hooks/useAppDispatch";
@@ -57,9 +58,6 @@ export function CartModal() {
   }, 0);
   const handleRemoveAll = () => dispatch(clearItem());
 
-  // Only display the first 3 elements. The rest can be viewed on the checkout menu itself.
-  const displayedCartItems = cart.slice(0, 3);
-  const remainingItemCount = cart.length - ITEM_DISPLAYED_ON_CART_MODAL;
   return (
     <div className="w-full max-w-[70rem] min-h-screen flex justify-end items-start mt-[6rem] pt-[2rem] px-8 max-x-sm:px-4 max-sm:pt-4">
       <article className="relative z-10 w-[24rem] bg-white p-8 rounded-lg max-x-sm:w-full max-x-sm:p-6 overflow-auto max-h-[calc(100vh-8rem)]">
@@ -73,11 +71,7 @@ export function CartModal() {
           </p>
         </div>
         {cart.length > 0 ? (
-          <CartItemList
-            remainingItemCount={remainingItemCount}
-            displayedCartItems={displayedCartItems}
-            totalPrice={totalPrice}
-          />
+          <CartItemList cartItems={cart} totalPrice={totalPrice} />
         ) : (
           <CartEmpty />
         )}
@@ -93,26 +87,34 @@ function CartEmpty() {
 }
 
 function CartItemList({
-  remainingItemCount,
-  displayedCartItems,
+  cartItems,
   totalPrice,
 }: {
-  remainingItemCount: number;
-  displayedCartItems: TCartItem[];
+  cartItems: TCartItem[];
   totalPrice: number;
 }) {
+  const [showAll, setShowAll] = useState(false);
+  const remainingItemCount = cartItems.length - ITEM_DISPLAYED_ON_CART_MODAL;
+  const handleShowAll = () => setShowAll((current) => !current);
+
   return (
     <>
       <ul className="grid gap-6">
-        {displayedCartItems.map((item) => {
+        {/* Only show first 3 elements */}
+        {cartItems.slice(0, showAll ? cartItems.length : 3).map((item) => {
           return <CartItem item={item} />;
         })}
       </ul>
       {remainingItemCount > 0 && (
-        <p className="text-black/50 text-center mt-8 hover:underline hover:text-accent-dark cursor-pointer">
-          View {remainingItemCount} More Item
-          {remainingItemCount > 1 ? "s" : ""}
-        </p>
+        <button
+          className="text-black/50 text-center mt-8 hover:underline hover:text-accent-dark cursor-pointer w-full border-t-[1px] border-black/25 pt-4"
+          onClick={handleShowAll}
+        >
+          {showAll
+            ? "View Less"
+            : `View ${remainingItemCount} More Item
+          ${remainingItemCount > 1 ? "s" : ""}`}
+        </button>
       )}
       <div className="flex justify-between items-center mt-8">
         <p className="text-black/50 text-body">TOTAL</p>

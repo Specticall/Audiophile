@@ -1,3 +1,6 @@
+import { TCartItem } from "../slice/cartSlice";
+import { SHIPPING_RATE, VAT_RATE } from "./config";
+
 export function getResponsiveImageFrom(
   type: string,
   images: {
@@ -32,4 +35,15 @@ export function formatCurrency(price: number) {
   });
 
   return formatter.format(price);
+}
+
+export function calculatePrices(cartItems: TCartItem[]) {
+  const totalPrice = cartItems.reduce((total, item) => {
+    return (total += item.price);
+  }, 0);
+  const shippingPrice = totalPrice * SHIPPING_RATE;
+  const VATPrice = totalPrice * VAT_RATE;
+  const grandTotalPrice = totalPrice + shippingPrice + VATPrice;
+
+  return { totalPrice, shippingPrice, VATPrice, grandTotalPrice };
 }
