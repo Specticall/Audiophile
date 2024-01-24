@@ -6,3 +6,5 @@ export const VAT_RATE = 0.2;
 export const REGEX_EMAIL = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const REGEX_PHONE =
   /^(?:\+?\d{1,3}[-.\s]?)?\(?\d{1,4}\)?[-.\s]?\d{1,6}[-.\s]?\d{1,6}$/;
+
+export const ENV: "production" | "development" = "production";

@@ -103,17 +103,22 @@ export default function Checkout() {
     console.log(data);
     dispatch(openModal("CheckoutComplete"));
   };
-  // const cartItems = fakeCart;
+
   const cartItems = useAppSelector((state) => state.cart.cart);
   return cartItems.length === 0 ? (
     <CheckoutEmpty />
   ) : (
-    <div className="bg-gray h-full pt-[6rem]">
+    <div className="bg-gray h-full pt-[6rem] max-x-lg:pt-[3rem]">
       <form
-        className="max-w-[70rem] mx-auto grid grid-cols-[1fr_22rem] px-8 my-[8.5rem] gap-8"
+        className="max-w-[70rem] mx-auto grid grid-cols-[1fr_22rem] px-8 my-[8.5rem] gap-8 max-x-lg:grid-cols-1 max-md:px-6 max-sm:px-4"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="bg-white px-12 py-14 rounded-lg">
+        <LinkButton to="previous" className="text-start col-span-2">
+          <p className="font-bold text-black/50 text-body hover:text-accent-dark">
+            Go Back
+          </p>
+        </LinkButton>
+        <div className="bg-white px-12 py-14 rounded-lg max-md:px-8 max-sm:px-6">
           <h3 className="text-h3 font-bold uppercase">Checkout</h3>
           <div className="space-y-[3rem]">
             <BillingDetails register={register} error={errors} />
@@ -226,7 +231,7 @@ function BillingDetails({ register, error }: TFormProps) {
       <h4 className="uppercase text-accent-dark font-bold text-subtitle tracking-button mb-4">
         Billing Details
       </h4>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
         <InputText
           label="Name"
           placeholder="Alexei Ward"
@@ -268,11 +273,11 @@ function ShippingInfo({ register, error }: TFormProps) {
       <h4 className="uppercase text-accent-dark font-bold text-subtitle tracking-button mb-4">
         Shipping Info
       </h4>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
         <InputText
           label="Address"
           placeholder="1137 Williams Avenua"
-          className="col-span-2"
+          className="sm:col-span-2"
           register={register("zipcode", { required: "Cannot be empty" })}
           errorMessage={error.address?.message}
         />
@@ -312,9 +317,9 @@ function PaymentDetails({
       <h4 className="uppercase text-accent-dark font-bold text-subtitle tracking-button mb-4">
         Shipping Info
       </h4>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
         <label className="mb-2 text-label font-bold">Payment Method</label>
-        <div className="space-y-4">
+        <div className="space-y-4 max-sm:mb-4">
           <Controller
             control={control}
             name="paymentMethod"
@@ -364,7 +369,7 @@ function PaymentDetails({
             />
           </>
         ) : (
-          <div className="col-span-2 flex gap-8 items-center justify-center mt-2">
+          <div className="sm:col-span-2 flex gap-8 items-center justify-center mt-2">
             <Icon type="COD" color="#D87D4A" />
             <p className="text-black/50 text-body leading-body">
               The ‘Cash on Delivery’ option enables you to pay in cash when our

@@ -1,8 +1,19 @@
 import { Button } from "../ui/Button";
 import { LinkButton } from "../ui/LinkButton";
+import { useEffect } from "react";
+import { setRouteStateTo } from "../slice/appSlice";
+import { useAppDispatch } from "../hooks/useAppDispatch";
 
 export default function PageNotFound() {
   const error = "The page you requested does not exist";
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setRouteStateTo("invalid"));
+    return () => {
+      dispatch(setRouteStateTo("valid"));
+    };
+  }, [dispatch]);
   return (
     <div className="min-h-screen grid place-items-center">
       <div className="text-center">

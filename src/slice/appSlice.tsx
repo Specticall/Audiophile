@@ -6,6 +6,7 @@ type TinitialState = {
   status: "loading" | "idle";
   initialRenderCompleted: boolean;
   initialLoaderCompleted: boolean;
+  invalidRoute: boolean;
 };
 
 const initialState: TinitialState = {
@@ -14,6 +15,8 @@ const initialState: TinitialState = {
   initialRenderCompleted: false,
   // This will flag whether the loader animation for the load has been completed or not.
   initialLoaderCompleted: false,
+  // Will flag whenever a page is not found.
+  invalidRoute: false,
 };
 
 const appSlice = createSlice({
@@ -29,6 +32,9 @@ const appSlice = createSlice({
     initialLoaderIsCompleted(state) {
       state.initialLoaderCompleted = true;
     },
+    setRouteStateTo(state, action: PayloadAction<"valid" | "invalid">) {
+      state.invalidRoute = action.payload === "invalid" ? true : false;
+    },
   },
 });
 
@@ -41,5 +47,6 @@ export const {
   updateState,
   initialRenderIsCompleted,
   initialLoaderIsCompleted,
+  setRouteStateTo,
 } = appSlice.actions;
 export default appSlice.reducer;

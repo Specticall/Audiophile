@@ -53,9 +53,11 @@ function Hero() {
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <Button type="primary" className="mt-12">
-            See Product
-          </Button>
+          <LinkButton to="/product/xx99-mark-two-headphones">
+            <Button type="primary" className="mt-12">
+              See Product
+            </Button>
+          </LinkButton>
         </div>
       </div>
     </header>

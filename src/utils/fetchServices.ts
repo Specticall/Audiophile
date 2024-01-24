@@ -1,3 +1,6 @@
+import { products } from "../data/data";
+import { ENV } from "../helper/config";
+
 const API_URL = "http://localhost:9000";
 const RESPONSE_DELAY_MILLISECONDS = 1000;
 
@@ -7,7 +10,7 @@ export const wait = async (timeMSeconds: number): Promise<void> => {
   });
 };
 
-export const fetchProducts = async () => {
+const fetchFromServer = async () => {
   try {
     const response = await fetch(`${API_URL}/products`);
     const data = await response.json();
@@ -23,3 +26,14 @@ export const fetchProducts = async () => {
     if (err instanceof Error) return err.message;
   }
 };
+
+const fetchManual = async () => {
+  const data = products;
+
+  await wait(1000);
+
+  return data;
+};
+
+export const fetchProducts =
+  ENV === "development" ? fetchFromServer : fetchManual;

@@ -77,6 +77,7 @@ const router = createBrowserRouter([
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const dispatch = useDispatch();
+  const invalidRoute = useAppSelector((state) => state.app.invalidRoute);
   const initialRenderCompleted = useAppSelector(
     (state) => state.app.initialRenderCompleted
   );
@@ -92,7 +93,9 @@ function App() {
   return (
     <div className="h-screen ">
       <AnimatePresence mode="wait" key={"initial-pageload"}>
-        {(!appIsReady || !initialRenderCompleted) && <InitialPageLoader />}
+        {(!appIsReady || !initialRenderCompleted) && !invalidRoute && (
+          <InitialPageLoader />
+        )}
       </AnimatePresence>
       <RouterProvider router={router} />;
     </div>
